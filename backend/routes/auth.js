@@ -39,14 +39,14 @@ router.post('/createUser',
             })
 
             const data = {
-                user :{
-                    id : user.id
+                user: {
+                    id: user.id
                 }
             }
             var authToken = jwt.sign(data, JWT_SECRET)
-            res.json({authToken})
+            res.json({ authToken })
 
-        }catch (error) {
+        } catch (error) {
             console.error(error.message)
             res.status(500).send('Internal Server Error')
         }
@@ -67,7 +67,7 @@ router.post('/login',
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const {email, password} = req.body
+        const { email, password } = req.body
 
         //Check if user with this email exist, if exist, compare the password
         try {
@@ -77,17 +77,17 @@ router.post('/login',
             }
 
             const comparePasswords = await bcrypt.compare(password, user.password)
-            if(!comparePasswords){
+            if (!comparePasswords) {
                 return res.status(400).json({ error: 'Please try to login with valid credentials' });//'Invalid password'
             }
 
             const data = {
-                user :{
-                    id : user.id
+                user: {
+                    id: user.id
                 }
             }
             var authToken = jwt.sign(data, JWT_SECRET)
-            res.json({authToken})
+            res.json({ authToken })
 
         } catch (error) {
             console.error(error.message)
@@ -97,15 +97,15 @@ router.post('/login',
 )
 
 //Route3 - Get User details: Post "api/auth/getUser".
-router.post('/getUser', fetchUser,    
+router.post('/getUser', fetchUser,
 
     async (req, res) => {
 
-        try{
+        try {
             userId = req.user.id//Auth token contains only userId in user object as defined in Login route
-            const user = await User.findById(userId).select('-password')            
+            const user = await User.findById(userId).select('-password')
             res.send(user)
-        }catch(error){
+        } catch (error) {
             console.error(error.message)
             res.status(500).send('Internal Server Error')
         }
