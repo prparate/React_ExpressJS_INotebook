@@ -15,11 +15,13 @@ function App() {
       <NoteState>
         <Router>
           <Navbar></Navbar>
-          <Routes>
-            {/* React does partial matching of the path, so always use 'exact path' instead of 'path' */}
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/about" element={<About />} />
-          </Routes>
+          <div className='container'>
+            <Routes>
+              {/* React does partial matching of the path, so always use 'exact path' instead of 'path' */}
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/about" element={<About />} />
+            </Routes>
+          </div>
         </Router>
       </NoteState>
     </>
