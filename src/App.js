@@ -8,13 +8,15 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import NoteState from './context/notes/NoteState';
+import Alert from './components/Alert';
 
 function App() {
   return (
     <>
       <NoteState>
         <Router>
-          <Navbar></Navbar>
+          <Navbar/>
+          <Alert message='{message}'/>
           <div className='container'>
             <Routes>
               {/* React does partial matching of the path, so always use 'exact path' instead of 'path' */}
