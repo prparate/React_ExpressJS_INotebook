@@ -18,14 +18,14 @@ const NoteState = (props) => {
     const addNote = async (title, description, tag) => {
 
         const url = hostURL + 'api/notes/addNote'
-        const response = await fetchApiData1(url, 'POST', authToken, {title, description, tag})
+        const response = await fetchApiData1(url, 'POST', authToken, { title, description, tag })
         setNotes(notes.concat(response))
     }
 
     const editNote = async (id, title, description, tag) => {
 
         const url = hostURL + 'api/notes/updateNote/' + id
-        await fetchApiData1(url, 'PUT', authToken, {title, description, tag})
+        await fetchApiData1(url, 'PUT', authToken, { title, description, tag })
 
         const newNotes = JSON.parse(JSON.stringify(notes))
         for (let index = 0; index < newNotes.length; index++) {
@@ -34,7 +34,7 @@ const NoteState = (props) => {
                 newNotes[index].description = description
                 newNotes[index].tag = tag
                 break
-            }            
+            }
         }
         setNotes(newNotes)
 
@@ -45,7 +45,7 @@ const NoteState = (props) => {
         const url = hostURL + 'api/notes/deleteNote/' + id
         await fetchApiData(url, 'DELETE', authToken)
 
-        const newNotes = notes.filter((note) => { return note._id !== id })        
+        const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes)
 
     }

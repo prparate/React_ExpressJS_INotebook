@@ -7,7 +7,7 @@ const Notes = () => {
 
     const context = useContext(noteContext)
     const { notes, fetchAllNotes, editNote } = context
-    const [note, setNote] = useState({id : '', etitle: '', edescription: '', etag: '' })
+    const [note, setNote] = useState({ id: '', etitle: '', edescription: '', etag: '' })
     const ref = useRef(null)
     const refClose = useRef(null)
 
@@ -18,7 +18,7 @@ const Notes = () => {
 
     const updateNote = (currentNote) => {
         ref.current.click()
-        setNote({ id : currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
+        setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
     }
 
     const handleChange = (event) => {
