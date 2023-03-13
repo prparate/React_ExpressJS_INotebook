@@ -5,12 +5,14 @@ connectToMongo()
 
 const app = express()
 const port = 5000
+const cors = require('cors')
 
 //Sample route
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+app.use(cors())
 app.use(express.json())
 
 //Available routes
