@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
 
     const [userFormDetails, setUserFormDetails] = useState({ name: '', email: '', password: '', cpassword: '' })
 
@@ -25,10 +25,15 @@ const Signup = () => {
             body: JSON.stringify({ name, email, password })
         });
         const json = await response.json()
-        console.log(json)
+        
         if (json.success) {
             localStorage.setItem('token', json.authtoken)
             navigate('/')
+            props.showAlert('Account created Successfully', 'success')
+
+        }else{
+            props.showAlert('Invalid form details', 'danger')
+            
         }
     }
 
